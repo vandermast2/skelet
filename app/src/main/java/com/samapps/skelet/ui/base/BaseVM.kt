@@ -7,6 +7,7 @@ import com.samapps.skelet.AppApplication
 import com.samapps.skelet.dataFlow.IDataManager
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.Job
+import timber.log.Timber
 import javax.inject.Inject
 
 abstract class BaseVM: ViewModel() {
@@ -85,7 +86,7 @@ abstract class BaseVM: ViewModel() {
 //    }
 
     protected fun onError(throwable: Throwable?) {
-//        Timber.e("tag $throwable")
+        Timber.e("Error $throwable")
         showAlert()
     }
 

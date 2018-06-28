@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.samapps.skelet.utils
 
 import android.content.Context
@@ -34,6 +36,14 @@ object UiUtils {
      */
     val isCompatWithM: Boolean
         get() = isCompatWith(Build.VERSION_CODES.M)
+
+    /**
+     * Check compatibility with api level = 24 (N)
+     *
+     * @return true, if current version >= 24
+     */
+    val isCompatWithN: Boolean
+        get() = isCompatWith(Build.VERSION_CODES.N)
 
     /**
      * Check compatibility with api level = 21 (Lollipop)
