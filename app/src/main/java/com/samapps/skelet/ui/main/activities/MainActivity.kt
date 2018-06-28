@@ -4,8 +4,8 @@ import android.os.Bundle
 import com.samapps.skelet.AppApplication
 import com.samapps.skelet.R
 import com.samapps.skelet.ui.base.BaseActivity
-import com.samapps.skelet.ui.main.MainViewModel
-import com.samapps.skelet.ui.main.fragments.MainFragment
+import com.samapps.skelet.ui.main.fragments.main.MainViewModel
+import com.samapps.skelet.ui.main.fragments.main.MainFragment
 
 class MainActivity : BaseActivity<MainViewModel>() {
     override val observeLiveData: MainViewModel.() -> Unit = { }

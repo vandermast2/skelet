@@ -1,8 +1,7 @@
-package com.samapps.skelet.ui.main.fragments
+package com.samapps.skelet.ui.main.fragments.main
 
 import com.samapps.skelet.R.layout.main_fragment
 import com.samapps.skelet.ui.base.BaseFragment
-import com.samapps.skelet.ui.main.MainViewModel
 
 class MainFragment : BaseFragment<MainViewModel>() {
     override val layoutId: Int = main_fragment

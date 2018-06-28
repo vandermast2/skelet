@@ -1,4 +1,4 @@
-package com.samapps.skelet.ui.main
+package com.samapps.skelet.ui.main.fragments.main
 
 import com.samapps.skelet.ui.base.BaseVM
 
