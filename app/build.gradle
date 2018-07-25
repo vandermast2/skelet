@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId "com.samapps.skelet"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -63,10 +63,10 @@ android {
             dimension "default"
             applicationIdSuffix ".dev"
             resValue "string", "app_name", "skelet.DEV"
-            buildConfigField 'String', 'API_BASE_URL', '"http://"'
-            buildConfigField 'String', 'SOCKET_BASE_URL', '"tcp://"'
-            buildConfigField 'String', 'TOKEN', '""'
-            buildConfigField 'String', 'TOKEN1', '""'
+            buildConfigField 'String', 'API_BASE_URL', '"http://217.71.92.66/jpa/cv.dev/"'
+            buildConfigField 'String', 'SOCKET_BASE_URL', '"tcp://217.71.92.68:443"'
+            buildConfigField 'String', 'TOKEN', '"in342yxro7yn3o8ycrf98pq3yxp9r8uq38u4rtpt0q38up480f3fb8347hf374hf037h40f3h4f037h4f03h84f0h83450f8j0j58fjh"'
+            buildConfigField 'String', 'TOKEN1', '"in342yxro7yn3o8y"'
         }
         devTest {
             dimension "default"
@@ -115,6 +115,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 
 }
 

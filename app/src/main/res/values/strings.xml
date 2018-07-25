@@ -1,10 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="ok">OK</string>
-    <string name="cancel">CANCEL</string>
-
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 
@@ -44,6 +39,8 @@
 
     <string name="title_activity_promotion">PromotionActivity</string>
     <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
     <string name="save_trader_s_number">Call your bank</string>
 
     <string name="title_activity_alert_warrants">AlertWarrantsActivity</string>
@@ -53,6 +50,8 @@
     <string name="new_articles">%d new publications</string>
 
     <string name="title_activity_disclaimer_detail">DisclaimerDetailActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="first">Bank Julius Baer provides daily tradeable premarket quotes on all SMI stocks as well as on a selected choice of Swiss mid-caps stocks between 08:00 - 08:45 h.  \nWe are pleased to accept your orders through your own bank or call our Julius Baer trading desk directly at +41 (0)58 888 8680.</string>
     <string name="second">Julius Baer is a leading issuer of Structured Products and Warrants in Switzerland. A solid balance sheet with a strong equity ratio make the bank an attractive partner for private clients, family offices, banks and independent asset managers. Measured by traded volume at the stock exchange, Julius Baer is one of the top five issuers in the Swiss market. This excellent market position is due to bank\'s high-quality product range and client service.
         \n\nYou can count on a team of experienced derivatives advisors who are happy to assist you.
