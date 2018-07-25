@@ -1,6 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/smiLay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-</LinearLayout>
+    <include
+        android:id="@+id/include11"
+        layout="@layout/header_smi"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtHomeMareketSMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/verlag_book"
+        android:gravity="bottom|center_horizontal"
+        android:text="JB SMI"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtLastTrader1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/verlag_light"
+        android:text=""
+        android:textColor="@color/blueGreen"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHomeMareketSMI" />
+
+    <TextView
+        android:id="@+id/txtPercent1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/verlag_bold"
+        android:text=""
+        android:textColor="@color/blueGreen"
+        android:textSize="15sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLastTrader1" />
+
+    <TextView
+        android:id="@+id/txtRightPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/verlag_book"
+        android:text="2%"
+        android:textColor="@color/blueGreen"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHome"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewHome" />
+
+    <TextView
+        android:id="@+id/txtLeftPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="215dp"
+        android:fontFamily="@font/verlag_book"
+        android:text="-2%"
+        android:textColor="@color/rouge"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHome"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerViewHome" />
+
+    <TextView
+        android:id="@+id/txtCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/verlag_book"
+        android:text="0%"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHome"
+        app:layout_constraintEnd_toStartOf="@id/txtRightPercent"
+        app:layout_constraintStart_toEndOf="@+id/txtLeftPercent" />
+
+    <TextView
+        android:id="@+id/txtCenterLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/verlag_book"
+        android:text="-1%"
+        android:textColor="@color/rouge"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHome"
+        app:layout_constraintEnd_toStartOf="@id/txtCenter"
+        app:layout_constraintStart_toEndOf="@+id/txtLeftPercent" />
+
+    <TextView
+        android:id="@+id/txtCenterRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/verlag_book"
+        android:text="1%"
+        android:textColor="@color/blueGreen"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHome"
+        app:layout_constraintEnd_toStartOf="@id/txtRightPercent"
+        app:layout_constraintStart_toEndOf="@+id/txtCenter" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorPrimary"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include11">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/spinnerIndexSMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/spinnerSMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerViewHome" />
+
+
+    <FrameLayout
+        android:id="@+id/containerId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
