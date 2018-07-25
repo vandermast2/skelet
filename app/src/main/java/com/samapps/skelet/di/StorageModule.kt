@@ -3,6 +3,7 @@ package com.samapps.skelet.di
 import android.content.Context
 import com.samapps.skelet.dataFlow.controllers.DeCryptor
 import com.samapps.skelet.dataFlow.controllers.EnCryptor
+import com.samapps.skelet.dataFlow.controllers.NodeCrypto
 import com.samapps.skelet.dataFlow.controllers.SecurityController
 import com.samapps.skelet.dataFlow.storage.IUserStorage
 import com.samapps.skelet.dataFlow.storage.PreferenceUserStorage
@@ -21,6 +22,12 @@ class StorageModule {
 
     @Provides
     @Singleton
+    fun provideNodeCrypto(): NodeCrypto {
+        return NodeCrypto()
+    }
+
+    @Provides
+    @Singleton
     fun provideEnCryptor(): EnCryptor {
         return EnCryptor()
     }
@@ -36,4 +43,5 @@ class StorageModule {
     fun provideSecurityController(enCryptor: EnCryptor, deCryptor: DeCryptor, context: Context): SecurityController {
         return SecurityController(enCryptor, deCryptor, context)
     }
+
 }

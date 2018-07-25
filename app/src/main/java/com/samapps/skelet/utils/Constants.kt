@@ -3,4 +3,11 @@ package com.samapps.skelet.utils
 object Constants{
     val DEFAULT_UI_DELAY:Long = 0
     val DEFAULT_TITLE: CharSequence = ""
+    val NEWS_FRAGMENT_TAG: String = "NEWS_FRAGMENT_TAG"
+    val WARRANTS_FRAGMENT_TAG: String = "WARRANTS_FRAGMENT_TAG"
+    val ALERT_FRAGMENT_TAG: String = "ALERT_FRAGMENT_TAG"
+    val SETTINGS_FRAGMENT_TAG: String = "SETTINGS_FRAGMENT_TAG"
+    val CONTACT_FRAGMENT_TAG: String = "CONTACT_FRAGMENT_TAG"
+    val DISCLAIMER_FRAGMENT_TAG: String = "DISCLAIMER_FRAGMENT_TAG"
+    val COMPANY_FRAGMENT_TAG: String = "COMPANY_FRAGMENT_TAG"
 }

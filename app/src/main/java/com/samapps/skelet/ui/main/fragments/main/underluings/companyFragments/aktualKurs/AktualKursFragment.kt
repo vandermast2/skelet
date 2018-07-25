@@ -1,18 +1,13 @@
 package com.juliusbaer.premarket.ui.fragments.companyFragments
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.samapps.skelet.R
 import com.samapps.skelet.ui.base.BaseFragment
 import com.samapps.skelet.ui.main.activities.main.MainActivityVM
-import timber.log.Timber
 
 
 class AktualKursFragment : BaseFragment<MainActivityVM>() {
+    override fun getName(): String = ""
+
     override val viewModelClass: Class<MainActivityVM> = MainActivityVM::class.java
     override val layoutId: Int = R.layout.fragment_aktual_kurs
     override val observeLiveData: MainActivityVM.() -> Unit = {
@@ -52,31 +47,7 @@ class AktualKursFragment : BaseFragment<MainActivityVM>() {
     private var priceCurrency: String? = null
     private var isUpdated = false
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-//        viewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
-//
-//        viewModel.
-//        intradayLay?.onClick {
-//            updateBtn(txtIntraday, imgIntraday, Constants.INTRADAY)
-//        }
-//        threeMonthLay?.onClick {
-//            updateBtn(txtThreeMonth, imgThreeMonth, Constants.THREE_MONTH)
-//        }
-//        sixMonthLay?.onClick {
-//            updateBtn(txtSixMonth, imgSixMonth, Constants.SIX_MONTH)
-//        }
-//        yearLay?.onClick {
-//            updateBtn(txtOneYear, imgYear, Constants.YEAR)
-//        }
-//        txtOpenTop?.onClick {
-//            replaceFragmentSafely(TopCompanyFragment(), Constants.WARRANTS_FRAGMENT_TAG, false, true, R.id.fragment)
-//        }
-    }
-
-//    private fun updateUIFromApi(item: UnderlyingById?) {
+    //    private fun updateUIFromApi(item: UnderlyingById?) {
 //        valor = item?.valor
 //        txtBidValueMarket?.text = item?.priceBid!!.format(2, item.priceCurrency!!)
 //        txtAskValueMarket?.text = item.priceAsk!!.format(2, item.priceCurrency!!)

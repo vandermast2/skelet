@@ -20,6 +20,14 @@ class SplashActivity : BaseActivity<SplashActivityVM>() {
             if (it?.error != null) {
                 Timber.e(it.error.message)
             } else {
+                viewModel.saveToken(it.data?.accessToken!!)
+                viewModel.savePublicKey(it.data.publicKey!!)
+                viewModel.saveTokenRole(it.data.role!!)
+                if (it.data.role == "Subscriber") {
+                    viewModel.setIsConfirmed(true)
+                } else {
+                    viewModel.setIsConfirmed(false)
+                }
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                 finish()
             }

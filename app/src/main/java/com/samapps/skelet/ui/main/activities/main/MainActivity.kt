@@ -43,7 +43,9 @@ class MainActivity : BaseActivity<MainActivityVM>() {
             when (productType) {
 //                "0" -> startActivity(Intent(this, DetailNewsActivity::class.java).putExtra("id", productId.toString()))
 //                "1" -> { replaceFragmentSafely(IndexDetailFragment(), false, true, R.id.containerLayoutFragment, R.style.FragStyle) }
-//                "2" -> {replaceFragmentSafely(CompanyFragment.newInstance(UnderlyingModel(id = productId.toString().toInt())), false, true, R.id.container, R.style.FragStyle) }
+                "2" -> {
+                    replaceFragmentSafely(CompanyFragment.newInstance(UnderlyingModel(id = productId.toString().toInt())), false, true, R.id.container, R.style.FragStyle)
+                }
 //                "3" -> {
 //                    viewModel.getItemId().value = productId.toString()
 //                    replaceFragmentSafely(WarrantsDetailFragment(), false, true, R.id.containerLayoutFragment)

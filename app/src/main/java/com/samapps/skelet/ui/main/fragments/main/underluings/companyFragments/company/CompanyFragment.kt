@@ -1,12 +1,7 @@
 package com.samapps.skelet.ui.main.fragments.main.underluings.companyFragments.company
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
-import androidx.core.content.res.ResourcesCompat
-import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
 import com.juliusbaer.premarket.ui.fragments.companyFragments.AktualKursFragment
@@ -24,6 +19,8 @@ import timber.log.Timber
 
 
 class CompanyFragment : BaseFragment<CompanyVM>() {
+    override fun getName(): String = ""
+
     override val viewModelClass: Class<CompanyVM> = CompanyVM::class.java
     override val layoutId: Int = R.layout.fragment_company
     override val observeLiveData: CompanyVM.() -> Unit = { }
@@ -107,37 +104,7 @@ class CompanyFragment : BaseFragment<CompanyVM>() {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-//        viewModel.getItemId().observe(this, Observer { id ->
-//            if (!isUpdate) {
-//                productId = id
-//                isUpdate = true
-//            }
-//
-//            viewModel.subscribeToSocket()
-//                    .subscribe(
-//                            { item ->
-//                                clientMessageReceived(item)
-//                                Timber.d("Socket connect $item")
-//                            }
-//                            , { e -> Timber.e("Socket error $e") })
-//            chartDataResultViewModel.getItem(productId!!)
-//            chartDataResultViewModel.getUnderluingResult().observe(this, Observer { item ->
-//                if (item?.error != null) {
-//                    parseError(item)
-//                } else {
-//                    name.text = (item!!.data as UnderlyingById).name
-//                    isImgStarTrue = (item.data as UnderlyingById).isInWatchList!!
-//                    if (isImgStarTrue) {
-//                        imgStar.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_watchlist_active))
-//                    }
-//                }
-//            })
-//        })
-    }
-
-//    private fun setupViewPager(): ViewPager {
+    //    private fun setupViewPager(): ViewPager {
 //        viewPager.adapter = TabsFragmentAdapter(childFragmentManager, setTabs())
 //        return viewPager
 //    }

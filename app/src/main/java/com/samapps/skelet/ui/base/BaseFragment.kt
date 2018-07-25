@@ -1,19 +1,25 @@
 package com.samapps.skelet.ui.base
 
 
+import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListPopupWindow
+import android.widget.TextView
 import androidx.annotation.IdRes
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.tabs.TabLayout
 import com.samapps.skelet.R
 import com.samapps.skelet.utils.Constants
+import kotlinx.android.synthetic.main.tab_item.view.*
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
@@ -30,6 +36,10 @@ abstract class BaseFragment<T : BaseVM> : Fragment() {
     companion object {
         private const val COROUTINE_DELAY = 1L
     }
+
+    abstract fun getName(): String
+
+    var popupWindow: ListPopupWindow? = null
 
     abstract val viewModelClass: Class<T>
 
@@ -193,5 +203,24 @@ abstract class BaseFragment<T : BaseVM> : Fragment() {
         }
     }
 
+    fun changeTabsFont(tabBar: TabLayout, textSize: Float) {
+        val arr = arrayOf("JB SMI", " JB Mid Cap", "Markets", "Watchlist", "More")
+        val drawableArr = arrayOf(R.drawable.midcap_tab_btn, R.drawable.home_tab_btn, R.drawable.globe_tab_btn, R.drawable.watchlist_tab_btn, R.drawable.more_tab_btn)
+        for (j in 0 until tabBar.tabCount) {
+            val tab = LayoutInflater.from(context).inflate(R.layout.tab_item, null)
+            val txtLabel: TextView = tab.text1
+            txtLabel.typeface = ResourcesCompat.getFont(context!!, R.font.verlag_light)
+            txtLabel.textSize = textSize
+            txtLabel.text = arr[j]
+            tab.imgIco.setImageResource(drawableArr[j])
+            tabBar.getTabAt(j)!!.customView = tab
+        }
+    }
+
+    fun convertDpToPixel(dp: Int, context: Context): Int {
+        val resources = context.resources
+        val metrics = resources.displayMetrics
+        return dp * (metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
+    }
 
 }

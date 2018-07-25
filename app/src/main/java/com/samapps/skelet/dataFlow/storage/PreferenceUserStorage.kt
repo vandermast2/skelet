@@ -32,20 +32,16 @@ class PreferenceUserStorage @Inject constructor(var context: Context, val securi
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun saveTokenRole(role: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getTokenRole(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun isConfirmed(): Boolean = preference.getBoolean(IS_CONFIRMED, false)
 
     override fun setIsConfirmed(confirmed: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        preference.edit().putBoolean(IS_CONFIRMED, confirmed).apply()
     }
 
-    override fun isConfirmed(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getTokenRole(): String = preference.getString(TOKEN_ROLE, "")
+
+    override fun saveTokenRole(role: String) {
+        preference.edit().putString(TOKEN_ROLE, role).apply()
     }
 
     override fun clearFilter() {
@@ -53,36 +49,28 @@ class PreferenceUserStorage @Inject constructor(var context: Context, val securi
     }
 
     override fun setAlphabetic(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        preference.edit().putBoolean("Alphabetic", toBoolean).apply()
     }
 
     override fun setTop(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        preference.edit().putBoolean("Top", toBoolean).apply()
     }
 
     override fun setBoxes(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        preference.edit().putBoolean("Boxes", toBoolean).apply()
     }
 
     override fun setCandles(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        preference.edit().putBoolean("Candles", toBoolean).apply()
     }
 
-    override fun getAlphabetic(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getAlphabetic(): Boolean = preference.getBoolean("Alphabetic", false)
 
-    override fun getTop(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getTop(): Boolean = preference.getBoolean("Top", true)
 
-    override fun getBoxes(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getBoxes(): Boolean = preference.getBoolean("Boxes", true)
 
-    override fun getCandles(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getCandles(): Boolean = preference.getBoolean("Candles", false)
 
     override fun setUserId(deviceId: String) {
         preference.edit().putString(USER_ID, securityController.getEncypted(deviceId)).apply()
@@ -91,17 +79,15 @@ class PreferenceUserStorage @Inject constructor(var context: Context, val securi
     override fun getUserID(): String = securityController.getDecrypted(preference.getString(USER_ID, ""))
 
     override fun savePublicKey(publicKey: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        preference.edit().putString(USER_ID, securityController.getEncypted(publicKey)).apply()
     }
 
-    override fun getPublicKey(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getPublicKey(): String = securityController.getDecrypted(preference.getString(PUBLIC_KEY, ""))
 
-    override fun getToken(): String = decrypt(preference.getString(encrypt(TOKEN), encrypt("")))
+    override fun getToken(): String = securityController.getDecrypted(preference.getString(TOKEN, ""))
 
     override fun saveToken(token: String) {
-        preference.edit().putString(encrypt(TOKEN), encrypt(token)).apply()
+        preference.edit().putString(TOKEN, securityController.getEncypted(token)).apply()
     }
 
     private val preference: SharedPreferences
