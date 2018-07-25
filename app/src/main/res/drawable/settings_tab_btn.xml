@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_settings_active" android:state_pressed="true" /> <!-- pressed -->
+    <item android:drawable="@drawable/ic_settings_active" android:state_focused="true" /> <!-- focused -->
+    <item android:drawable="@drawable/ic_settings" /> <!-- default -->
+</selector>

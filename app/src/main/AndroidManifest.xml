@@ -4,6 +4,31 @@
     package="com.samapps.skelet">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-permission android:name="com.google.android.gms.permission.CAR" />
+
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID_NOTIFICATION" />
+
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+
+    <uses-permission android:name="com.google.android.gms.WRITE_VERIFY_APPS_CONSENT" />
+
+    <uses-permission android:name="com.google.android.partnersetup.permission.WRITE_APP_PROVIDER" />
+
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
@@ -20,7 +45,6 @@
         <activity
             android:name=".ui.main.activities.splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
