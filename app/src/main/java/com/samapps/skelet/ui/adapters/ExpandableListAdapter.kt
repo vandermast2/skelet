@@ -1,16 +1,16 @@
 package com.samapps.skelet.ui.adapters
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
-import com.juliusbaer.premarket.R
-import com.juliusbaer.premarket.models.serverModels.Products
-import com.juliusbaer.premarket.ui.fragments.extentions.format
-import com.juliusbaer.premarket.utils.onClick
+import androidx.core.content.ContextCompat
+import com.samapps.skelet.R
+import com.samapps.skelet.dataFlow.models.apiModels.Products
+import com.samapps.skelet.utils.extentions.format
+import com.samapps.skelet.utils.extentions.onClick
 import kotlinx.android.synthetic.main.child_view.view.*
 import kotlinx.android.synthetic.main.group_view.view.*
 

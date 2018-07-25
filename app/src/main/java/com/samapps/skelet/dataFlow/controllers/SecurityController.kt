@@ -2,7 +2,10 @@ package com.samapps.skelet.dataFlow.controllers
 
 
 import android.content.Context
+import android.os.Build
 import android.security.KeyPairGeneratorSpec
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
 import java.math.BigInteger
 import java.security.KeyPairGenerator
 import java.security.KeyStore
@@ -37,6 +40,7 @@ class SecurityController @Inject constructor(private val enCryptor: EnCryptor, p
                 val start = Calendar.getInstance()
                 val end = Calendar.getInstance()
                 end.add(Calendar.YEAR, 1)
+
                 val spec = KeyPairGeneratorSpec.Builder(context)
                         .setAlias(alias)
                         .setSubject(X500Principal("CN=Sample Name, O=Android Authority"))
@@ -45,7 +49,15 @@ class SecurityController @Inject constructor(private val enCryptor: EnCryptor, p
                         .setEndDate(end.time)
                         .build()
                 val generator = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore")
-                generator.initialize(spec)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    generator.initialize(KeyGenParameterSpec.Builder(
+                            "mykey", KeyProperties.PURPOSE_SIGN)
+                            .setDigests(KeyProperties.DIGEST_SHA256)
+                            .setSignaturePaddings(KeyProperties.SIGNATURE_PADDING_RSA_PSS)
+                            .build())
+                } else {
+                    generator.initialize(spec)
+                }
 
                 val keyPair = generator.generateKeyPair()
             }

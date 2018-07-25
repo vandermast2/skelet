@@ -49,56 +49,44 @@ class DataManger @Inject constructor(private val api: Api, private val storage: 
     }
 
     override fun saveTokenRole(role: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.saveTokenRole(role)
     }
 
-    override fun getTokenRole(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getTokenRole(): String = storage.getTokenRole()
 
     override fun setIsConfirmed(confirmed: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.setIsConfirmed(confirmed)
     }
 
-    override fun isConfirmed(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun isConfirmed(): Boolean = storage.isConfirmed()
 
     override fun clearFilter() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun setAlphabetic(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.setAlphabetic(toBoolean)
     }
 
     override fun setTop(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.setTop(toBoolean)
     }
 
     override fun setBoxes(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.setCandles(toBoolean)
     }
 
     override fun setCandles(toBoolean: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.setCandles(toBoolean)
     }
 
-    override fun getAlphabetic(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getAlphabetic(): Boolean = storage.getAlphabetic()
 
-    override fun getTop(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getTop(): Boolean = storage.getTop()
 
-    override fun getBoxes(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getBoxes(): Boolean = storage.getBoxes()
 
-    override fun getCandles(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getCandles(): Boolean = storage.getCandles()
 
     override fun setUserId(deviceId: String) {
         storage.setUserId(deviceId)
@@ -113,16 +101,12 @@ class DataManger @Inject constructor(private val api: Api, private val storage: 
     }
 
     override fun savePublicKey(publicKey: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.savePublicKey(publicKey)
     }
 
-    override fun getPublicKey(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getPublicKey(): String = storage.getPublicKey()
 
-    override fun getCandleSMI(): Flowable<List<CandleStickModel>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getCandleSMI(): Deferred<List<CandleStickModel>> = api.getCandleSMI()
 
     override fun getCandleMidCap(): Flowable<List<CandleStickModel>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -140,9 +124,7 @@ class DataManger @Inject constructor(private val api: Api, private val storage: 
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getSMIUnderlyings(): Flowable<List<JBSMIModel>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getSMIUnderlyings(): Deferred<List<JBSMIModel>> = api.getSMIUnderlyings()
 
     override fun getAllUnderlyings(): Flowable<List<JBSMIModel>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -194,9 +176,7 @@ class DataManger @Inject constructor(private val api: Api, private val storage: 
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getSmiIndex(): Flowable<List<Index>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getSmiIndex(): Deferred<List<Index>> = api.getSmiIndex()
 
     override fun getMidCapIndex(): Flowable<List<Index>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -239,7 +219,7 @@ class DataManger @Inject constructor(private val api: Api, private val storage: 
     }
 
     override fun saveToken(token: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        storage.saveToken(token)
     }
 
     override fun getToken(): String  = storage.getToken()

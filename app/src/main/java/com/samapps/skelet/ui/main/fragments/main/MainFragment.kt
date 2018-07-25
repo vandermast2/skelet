@@ -1,21 +1,18 @@
 package com.samapps.skelet.ui.main.fragments.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ListPopupWindow
-import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayout
 import com.samapps.skelet.R
 import com.samapps.skelet.ui.adapters.ItemMenu
 import com.samapps.skelet.ui.adapters.ListPopupWindowAdapter
 import com.samapps.skelet.ui.base.BaseFragment
 import com.samapps.skelet.ui.main.fragments.main.underluings.smi.SMIFragment
-import com.samapps.skelet.utils.Constants
-import com.samapps.skelet.utils.extentions.replaceFragmentSafely
 import kotlinx.android.synthetic.main.fragment_home_market.*
 
 class MainFragment : BaseFragment<MainViewModel>() {
+    override fun getName(): String = ""
     override val layoutId: Int = R.layout.fragment_home_market
     override val observeLiveData: MainViewModel.() -> Unit = {}
     override val viewModelClass: Class<MainViewModel> = MainViewModel::class.java

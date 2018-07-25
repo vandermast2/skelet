@@ -1,13 +1,5 @@
 package com.samapps.skelet.ui.main.fragments.main.underluings.companyFragments.top
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.View.GONE
-import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
 import com.samapps.skelet.R
@@ -19,6 +11,8 @@ import timber.log.Timber
 
 
 class TopCompanyFragment : BaseFragment<MainActivityVM>() {
+    override fun getName(): String = ""
+
     override val viewModelClass: Class<MainActivityVM> = MainActivityVM::class.java
     override val layoutId: Int = R.layout.company_warrants
     override val observeLiveData: MainActivityVM.() -> Unit = {}
@@ -28,44 +22,6 @@ class TopCompanyFragment : BaseFragment<MainActivityVM>() {
     private var id: String? = null
     private var isUpdate = false
 
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//        mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
-//        with(imgLeft) {
-//            visibility = VISIBLE
-//            setImageDrawable(ContextCompat.getDrawable(context, R.drawable.icon_caret_left_pull))
-//            onClick { activity?.onBackPressed() }
-//        }
-//
-//        with(imgRight) {
-//            visibility = VISIBLE
-//            setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_phone))
-//            onClick { callToTrader(mainViewModel.getPhoneNumber()) }
-//        }
-//
-//        txtTitle.text = ""
-//
-//        cardViewProduct.visibility = GONE
-//
-//        btnFilterWarrantsProduct.onClick { startActivity(Intent(context, FilterActivity::class.java)) }
-    }
-
-    override fun onResume() {
-        super.onResume()
-//        mainViewModel.getItemId().observe(this, Observer { it ->
-//            if (!isUpdate) {
-//                id = it
-//                isUpdate = true
-//            }
-//            subscribeToItemId(id)
-//            mainViewModel.getResponseWarrantsTop().observe(this, Observer { result ->
-//                //                subscribeToSocket(createArrayValors(result!!.data as List<Warrant>))
-//                initRecyclerView(result?.data as List<Warrant>)
-//            })
-//        })
-    }
 
     private fun initRecyclerView(listWarrants: List<Warrant>) {
 //        if (listWarrants.isEmpty()) {

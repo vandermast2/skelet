@@ -11,40 +11,40 @@ import retrofit2.http.*
 
 interface Api{
     //***********Alerts
-    @GET("manager/ManageAlerts")
+    @GET("api/ManageAlerts")
     fun getAlerts(): Flowable<List<AlertsModel>>
 
-    @POST("manager/Alerts/{productId}")
+    @POST("api/Alerts/{productId}")
     fun sendAlerts(@Path("productId") productId: Int, @Body alertSendModel: List<AlertSendModel>): Flowable<ResponseBody>
 
-    @DELETE("manager/Alerts/{productId}")
+    @DELETE("api/Alerts/{productId}")
     fun deleteAlerts(@Path("productId") productId: String): Flowable<ResponseBody>
 
-    @GET("manager/Alerts/{productId}")
+    @GET("api/Alerts/{productId}")
     fun getAlert(@Path("productId") id: String): Flowable<List<AlertItemModel>>?
 
-    @DELETE("manager/Alerts")
+    @DELETE("api/Alerts")
     fun deleteAllAlerts(): Flowable<ResponseBody>
 
     //***********File
-    @GET("manager/File")
+    @GET("api/File")
     fun getFile(@Query("fileHash") fileHash:String, @Query ("code") code:String ): Flowable<List<CandleStickModel>>
 
     //***********Indices
-    @GET("manager/Indices/SMI")
-    fun getSmiIndex(): Flowable<List<Index>>
+    @GET("api/Indices/SMI")
+    fun getSmiIndex(): Deferred<List<Index>>
 
-    @GET("manager/Indices/MidCap")
+    @GET("api/Indices/MidCap")
     fun getMidCapIndex(): Flowable<List<Index>>
 
-    @GET("manager/Indices/external")
+    @GET("api/Indices/external")
     fun getExternalIndex(): Flowable<List<Index>>
 
-    @GET("manager/Index/{id}")
+    @GET("api/Index/{id}")
     fun getIndex(@Path("id") id: String): Flowable<Index>
 
     //***********Login
-    @GET("manager/Logout")
+    @GET("api/Logout")
     fun logout(): Flowable<ResponseBody>
 
     @FormUrlEncoded
@@ -52,30 +52,30 @@ interface Api{
     fun registration(@Field("email") email: String?, @Field("client_id") installationId: String, @Field("grant_type") grant_type: String, @Field("device_token") device_token: String?): Deferred<RegistrationModel>//
 
     //***********News
-    @GET("manager/News")
+    @GET("api/News")
     fun getNews(): Flowable<List<NewsModel>>
 
-    @GET("manager/News/{id}")
+    @GET("api/News/{id}")
     fun getNewsById(@Path("id") id: Long): Flowable<NewsModel>
 
-    @GET("manager/News")
+    @GET("api/News")
     fun getNewsForUnderluing(@Query("underlyingId") id: Int): Flowable<List<NewsModel>>
 
-    @GET("manager/News")
+    @GET("api/News")
     fun getNewsByUnderluingId(@Query("filter.productIds") id: Array<Int>): Flowable<List<NewsModel>>
 
     //***********PerformanceSeries
-    @GET("manager/PerformanceSeries/{id}")
+    @GET("api/PerformanceSeries/{id}")
     fun getChartDataResult(@Path("id") id: String, @Query("period") period: String): Flowable<ChartData>
 
-    @GET("manager/CandlesticksGraph/Smi")
-    fun getCandleSMI(): Flowable<List<CandleStickModel>>
+    @GET("api/CandlesticksGraph/Smi")
+    fun getCandleSMI(): Deferred<List<CandleStickModel>>
 
-    @GET("manager/CandlesticksGraph/MidCap")
+    @GET("api/CandlesticksGraph/MidCap")
     fun getCandleMidCap(): Flowable<List<CandleStickModel>>
 
     //***********Promotion
-    @GET("manager/Promotion")
+    @GET("api/Promotion")
     fun getPromotionInfo(): Observable<PromotionInfoModel>
 
     //***********Staticstics
@@ -83,27 +83,27 @@ interface Api{
     fun saveStaticstics(@Body statistics: StatisticsModel)
 
     //***********Underlying
-    @GET("manager/Underlyings/SMI")
-    fun getSMIUnderlyings(): Flowable<List<JBSMIModel>>//
+    @GET("api/Underlyings/SMI")
+    fun getSMIUnderlyings(): Deferred<List<JBSMIModel>>//
 
-    @GET("manager/Underlyings")
+    @GET("api/Underlyings")
     fun getAllUnderlyings(): Flowable<List<JBSMIModel>>//
 
-    @GET("manager/Underlyings/MidCap")
+    @GET("api/Underlyings/MidCap")
     fun getMidCapUnderlyings(): Flowable<List<JBMidCapModel>>//
 
-    @GET("manager/Underlying/{id}")
+    @GET("api/Underlying/{id}")
     fun getUnderlyingsById(@Path("id") id: String?): Flowable<UnderlyingById>
 
     //***********UserProfile
-    @GET("manager/UserProfile")
+    @GET("api/UserProfile")
     fun getUserProfile(): Flowable<UserInfoModel>
 
-    @PUT("manager/UserProfile")
+    @PUT("api/UserProfile")
     fun putUserProfile(@Body userInfoModel: UserInfoModel): Flowable<ResponseBody>
 
     //***********Warrant
-    @GET("manager/Warrants")
+    @GET("api/Warrants")
     fun getWarrants(
             @Query("warrantsView") warrantsView: Boolean?,
             @Query("filter.underlyingId") id: String?,
@@ -116,19 +116,19 @@ interface Api{
             @Query("pagination.start") paginationStart: String?,
             @Query("pagination.count") paginationCount: String?): Flowable<List<Warrant>>//
 
-    @GET("manager/ExtremeWarrantsFilterValues")
+    @GET("api/ExtremeWarrantsFilterValues")
     fun getExtremeWarrantValues(): Single<ExtremeWarrantModel>//
 
-    @GET("manager/Warrant/{id}")
+    @GET("api/Warrant/{id}")
     fun getWarrantById(@Path("id") id: String): Flowable<DetailWarrant>
 
     //***********WatchListItem
-    @POST("manager/WatchListItem")
+    @POST("api/WatchListItem")
     fun addWatchListItem(@Query("id") id: String): Flowable<ResponseBody>
 
-    @GET("manager/WatchListInfo")
+    @GET("api/WatchListInfo")
     fun getWatchList(): Flowable<WatchlistInfoModel>
 
-    @DELETE("manager/WatchListItem")
+    @DELETE("api/WatchListItem")
     fun deleteWatchListItem(@Query("id") id: String): Flowable<ResponseBody>
 }

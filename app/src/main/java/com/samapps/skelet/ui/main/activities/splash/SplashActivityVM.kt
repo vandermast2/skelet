@@ -3,10 +3,10 @@ package com.samapps.skelet.ui.main.activities.splash
 import androidx.lifecycle.MutableLiveData
 import com.samapps.skelet.AppApplication
 import com.samapps.skelet.dataFlow.models.apiModels.RegistrationModel
-import com.samapps.skelet.dataFlow.models.apiModels.RespModel
 import com.samapps.skelet.dataFlow.models.responseModel.Response
 import com.samapps.skelet.dataFlow.responseModel.Status
 import com.samapps.skelet.ui.base.BaseVM
+import org.jetbrains.anko.doAsync
 
 class SplashActivityVM:BaseVM() {
 
@@ -16,7 +16,6 @@ class SplashActivityVM:BaseVM() {
             registrationSubscr(getEmail(), getUserId())
         }
     }
-
 
     init {
         AppApplication.component.inject(this)
@@ -28,13 +27,13 @@ class SplashActivityVM:BaseVM() {
         dataManager.setFirstTimeLoading(true)
     }
 
-    private fun saveToken(token: String) {
+    fun saveToken(token: String) {
         dataManager.saveToken(token)
     }
 
     fun getToken() = dataManager.getToken()
 
-    private fun saveTokenRole(role: String) = dataManager.saveTokenRole(role)
+    fun saveTokenRole(role: String) = dataManager.saveTokenRole(role)
 
     fun getRegistrationToken() = reggistrationToken
 
@@ -42,15 +41,11 @@ class SplashActivityVM:BaseVM() {
         processAsyncProviderCall(
                 call = { dataManager.registration(email, instalationId,"","")},
                 onSuccess = {
-                    reggistrationToken.postValue(Response(Status.SUCCESS,it,null))
-                    saveToken(it.accessToken!!)
-                    savePublicKey(it.publicKey!!)
-                    saveTokenRole(it.role!!)
-                    if (it.role == "Subscriber") {
-                        setIsConfirmed(true)
-                    } else {
-                        setIsConfirmed(false)
+
+                    doAsync {
+
                     }
+                    reggistrationToken.postValue(Response(Status.SUCCESS, it, null))
                 },
                 onError = {
                     reggistrationToken.postValue(Response(Status.ERROR,null,it))
@@ -61,7 +56,7 @@ class SplashActivityVM:BaseVM() {
 
     fun getEmail(): String? = dataManager.getEmail()
 
-    private fun setIsConfirmed(isConfirmed: Boolean) {
+    fun setIsConfirmed(isConfirmed: Boolean) {
         dataManager.setIsConfirmed(isConfirmed)
     }
 
@@ -73,7 +68,7 @@ class SplashActivityVM:BaseVM() {
 
     fun getUserId() = dataManager.getUserID()
 
-    private fun savePublicKey(publicKey: String) {
+    fun savePublicKey(publicKey: String) {
         dataManager.savePublicKey(publicKey)
     }
 }

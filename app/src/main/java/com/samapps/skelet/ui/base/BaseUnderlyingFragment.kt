@@ -1,33 +1,27 @@
 package com.samapps.skelet.ui.base
 
-import androidx.core.content.ContextCompat
-import com.samapps.skelet.R
+import android.view.View
 import com.samapps.skelet.dataFlow.models.apiModels.CandleStickModel
-import com.samapps.skelet.utils.extentions.onClick
+import com.samapps.skelet.utils.extentions.format
 import kotlinx.android.synthetic.main.fragment_smi.*
-import kotlinx.android.synthetic.main.header_smi.*
 
 abstract class BaseUnderlyingFragment<T : BaseVM>:BaseFragment<T>() {
-    fun setBoxesIcon() {
-        if (viewModel.getBoxes()) {
-            imgBoxes.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_candlestick))
-            hidePercentsHeader()
-        } else {
-            imgBoxes.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_boxes))
-            setPercentsHeader()
-        }
+    fun hidePercentsHeader() {
+        txtLeftPercent.visibility = View.GONE
+        txtCenterLeft.visibility = View.GONE
+        txtCenter.visibility = View.GONE
+        txtRightPercent.visibility = View.GONE
+        txtCenterRight.visibility = View.GONE
     }
 
-    fun onClickBoxes() {
-        imgBoxes.onClick {
-            if (viewModel.getBoxes()) {
-                viewModel.setBoxes(false)
-            } else {
-                viewModel.setBoxes(true)
-            }
-            setRecyclerAutomatically()
-        }
+    fun setPercentsHeader() {
+        txtLeftPercent.visibility = View.VISIBLE
+        txtCenterLeft.visibility = View.VISIBLE
+        txtCenter.visibility = View.VISIBLE
+        txtRightPercent.visibility = View.VISIBLE
+        txtCenterRight.visibility = View.VISIBLE
     }
+
 
     fun getMaxPositiveValue(list: List<CandleStickModel>): Int {
         return when {

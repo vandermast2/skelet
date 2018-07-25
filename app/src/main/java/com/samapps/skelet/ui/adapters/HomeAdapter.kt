@@ -12,7 +12,9 @@ import com.samapps.skelet.AppApplication
 import com.samapps.skelet.R
 import com.samapps.skelet.dataFlow.models.apiModels.JBSMIModel
 import com.samapps.skelet.dataFlow.storage.IUserStorage
+import com.samapps.skelet.utils.extentions.format
 import com.samapps.skelet.utils.extentions.onClick
+import kotlinx.android.synthetic.main.market_card_square.view.*
 import org.jetbrains.anko.textColor
 import timber.log.Timber
 import javax.inject.Inject
@@ -30,18 +32,19 @@ class HomeAdapter(private var items: MutableList<JBSMIModel>, private val listen
         AppApplication.component.inject(this)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+            ViewHolder(LayoutInflater.from(parent.context)
             .inflate(R.layout.market_card_square, parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position], listener)
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        val name = itemView!!.txtName
-        val txtProcentCard = itemView!!.txtProcentCard
-        val bid: TextView = itemView!!.txtBid
-        var background: CardView = itemView!!.cardView2
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val name = itemView.txtName
+        val txtProcentCard = itemView.txtProcentCard
+        val bid: TextView = itemView.txtBid
+        var background: CardView = itemView.cardView2 as CardView
 
 
         fun bind(item: JBSMIModel, listener: OnItemClickListener) {

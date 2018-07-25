@@ -1,7 +1,6 @@
 package com.samapps.skelet.ui.main.fragments.main.underluings.smi
 
 import android.os.Bundle
-import android.provider.Settings.System.DATE_FORMAT
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -14,15 +13,17 @@ import com.samapps.skelet.R
 import com.samapps.skelet.dataFlow.models.apiModels.CandleStickModel
 import com.samapps.skelet.dataFlow.models.apiModels.Index
 import com.samapps.skelet.dataFlow.models.apiModels.JBSMIModel
+import com.samapps.skelet.dataFlow.models.apiModels.UnderlyingModel
 import com.samapps.skelet.dataFlow.models.responseModel.Response
 import com.samapps.skelet.dataFlow.models.socketModel.SocketModel
 import com.samapps.skelet.ui.adapters.CandleAdapter
 import com.samapps.skelet.ui.adapters.HomeAdapter
 import com.samapps.skelet.ui.base.BaseUnderlyingFragment
 import com.samapps.skelet.ui.main.fragments.main.underluings.companyFragments.company.CompanyFragment
-import com.samapps.skelet.utils.Constants
+import com.samapps.skelet.utils.extentions.format
 import com.samapps.skelet.utils.extentions.onClick
 import com.samapps.skelet.utils.extentions.replaceFragmentSafely
+import com.samapps.skelet.utils.extentions.setDate
 import kotlinx.android.synthetic.main.fragment_smi.*
 import kotlinx.android.synthetic.main.header_smi.*
 import org.jetbrains.anko.textColor
@@ -30,9 +31,25 @@ import timber.log.Timber
 
 
 class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
+    override fun getName(): String = ""
+
     override val viewModelClass: Class<SMIViewModel> = SMIViewModel::class.java
     override val layoutId: Int = R.layout.fragment_smi
-    override val observeLiveData: SMIViewModel.() -> Unit = {}
+    override val observeLiveData: SMIViewModel.() -> Unit = {
+        viewModel.getSmiIndex().observe(this@SMIFragment, Observer { it ->
+            if (it?.error != null) {
+
+            } else {
+                val item = it?.data as List<Index>
+                setIndex(item[0].title!!, item[0].lastTraded.toString(), item[0].priceChangePct!!, item[0].date!!)
+                include11.onClick {
+                    //                    viewModel.getItemId().value = item[0].id.toString()
+//                    replaceFragmentSafely(IndexDetailFragment(), "Index_Detail", false, true, R.id.containerLayout)
+                }
+            }
+
+        })
+    }
 
     companion object {
         const val SMI_INDEX = "998089"
@@ -45,15 +62,14 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
         AppApplication.component.inject(this)
         smiLay.onClick { }
 
-//        viewModel.getSmiIndexRequest()
-//        viewModel.getSMIUnderluing()
-//        viewModel.getSMIUnderluingCandle()
-//        setHeaderSMIFromApi()
-//        subscribeToSocketHeaderSMI()
+        viewModel.getSmiIndexRequest()
+        viewModel.getSMIUnderluing()
+        viewModel.getSMIUnderluingCandle()
+        subscribeToSocketHeaderSMI()
 
         onClickBoxes()
         imgPhone.onClick {
-            callToTrader(viewModel.getPhoneNumber())
+            //            callToTrader(viewModel.getPhoneNumber())
         }
     }
 
@@ -75,51 +91,57 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
         isBoxesRecyclerInitialize()
     }
 
-    private fun hidePercentsHeader() {
-        txtLeftPercent.visibility = View.GONE
-        txtCenterLeft.visibility = View.GONE
-        txtCenter.visibility = View.GONE
-        txtRightPercent.visibility = View.GONE
-        txtCenterRight.visibility = View.GONE
-    }
-
-    private fun setPercentsHeader() {
-        txtLeftPercent.visibility = View.VISIBLE
-        txtCenterLeft.visibility = View.VISIBLE
-        txtCenter.visibility = View.VISIBLE
-        txtRightPercent.visibility = View.VISIBLE
-        txtCenterRight.visibility = View.VISIBLE
-    }
-
-    private fun initCandleRecycler(it: Response<List<CandleStickModel>>?) {
-        if (it?.error != null) {
-            parseError(it)
+    fun setBoxesIcon() {
+        if (viewModel.getBoxes()) {
+            imgBoxes.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_candlestick))
+            hidePercentsHeader()
         } else {
-            setValuesOnHeader(getMaxPositiveValue((it?.data!!)))
-            recyclerViewHome.layoutManager = LinearLayoutManager(context)
-            recyclerViewHome.setHasFixedSize(true)
-            recyclerViewHome.adapter = CandleAdapter(getMaxPositiveValue(it.data), getListCandles(it), object : CandleAdapter.OnCandleClickListener {
-                override fun onClick(smiModel: CandleStickModel) {
-                    viewModel.getItemId().value = smiModel.productId.toString()
-                    replaceFragmentSafely(CompanyFragment(), Constants.COMPANY_FRAGMENT_TAG, false, true, R.id.containerLayout, R.style.FragStyle)
-                }
-            })
-            spinnerSMI.visibility = View.GONE
-            recyclerViewHome.adapter.notifyDataSetChanged()
+            imgBoxes.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_boxes))
+            setPercentsHeader()
         }
     }
 
-    private fun setRecyclerView(it: Response?) {
+    fun onClickBoxes() {
+        imgBoxes.onClick {
+            if (viewModel.getBoxes()) {
+                viewModel.setBoxes(false)
+            } else {
+                viewModel.setBoxes(true)
+            }
+            setRecyclerAutomatically()
+        }
+    }
+
+
+    private fun initCandleRecycler(it: Response<List<CandleStickModel>>?) {
         if (it?.error != null) {
-            parseError(it)
+            parseError(it.error)
+        } else {
+            setValuesOnHeader(getMaxPositiveValue((it?.data!!)))
+            with(recyclerViewHome) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = CandleAdapter(getMaxPositiveValue(it.data), getListCandles(it), object : CandleAdapter.OnCandleClickListener {
+                    override fun onClick(smiModel: CandleStickModel) {
+                        replaceFragmentSafely(CompanyFragment.newInstance(UnderlyingModel(id = smiModel.productId.toString().toInt())), false, true, R.id.container, R.style.FragStyle)
+                    }
+                })
+                (adapter as CandleAdapter).notifyDataSetChanged()
+            }
+            spinnerSMI.visibility = View.GONE
+        }
+    }
+
+    private fun setRecyclerView(it: Response<List<JBSMIModel>>?) {
+        if (it?.error != null) {
+            parseError(it.error)
         } else {
             with(recyclerViewHome){
                 layoutManager = GridLayoutManager(context, 4)
                 setHasFixedSize(true)
                 adapter = HomeAdapter(getListBoxes(it!!), object : HomeAdapter.OnItemClickListener {
                     override fun onClick(smiModel: JBSMIModel) {
-                        viewModel.getItemId().value = smiModel.id.toString()
-                        replaceFragmentSafely(CompanyFragment(), Constants.COMPANY_FRAGMENT_TAG, false, true, R.id.containerLayout, R.style.FragStyle)
+                        replaceFragmentSafely(CompanyFragment.newInstance(UnderlyingModel(id = smiModel.id.toString().toInt())), false, true, R.id.container, R.style.FragStyle)
                     }
                 })
                 (adapter as HomeAdapter).notifyDataSetChanged()
@@ -148,15 +170,15 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
         viewModel.getSMIResponse().observe(this, Observer { it ->
             subscribeToSocketSMIList(it)
             setRecyclerView(it)
-            viewModel.subscribeToSocketContent(createValorArray(it?.data as? List<JBSMIModel>))
-            viewModel.subscribeToSocket()
-                    .filter({ item -> item != null })
-                    .subscribe(
-                            { item ->
-                                clientMessageReceivedList(item)
-                                Timber.d("Socket connect $item")
-                            }
-                            , { e -> Timber.e("Socket error $e") })
+//            viewModel.subscribeToSocketContent(createValorArray(it?.data as? List<JBSMIModel>))
+//            viewModel.subscribeToSocket()
+//                    .filter({ item -> item != null })
+//                    .subscribe(
+//                            { item ->
+//                                clientMessageReceivedList(item)
+//                                Timber.d("Socket connect $item")
+//                            }
+//                            , { e -> Timber.e("Socket error $e") })
         })
     }
 
@@ -166,29 +188,13 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
     }
 
     private fun subscribeToSocketHeaderSMI() {
-        viewModel.subscribeToSocket()
-                .subscribe(
-                        { item ->
-                            clientMessageReceived(item)
-                            Timber.d("Socket connect $item")
-                        }
-                        , { e -> Timber.e("Socket error $e") })
-    }
-
-    private fun setHeaderSMIFromApi() {
-        viewModel.getSmiIndex().observe(this, Observer { it ->
-            if (it?.error != null) {
-
-            } else {
-                val item = it?.data as List<Index>
-                setIndex(item[0].title!!, item[0].lastTraded.toString(), item[0].priceChangePct!!, item[0].date!!)
-                include11.onClick {
-                    viewModel.getItemId().value = item[0].id.toString()
-                    replaceFragmentSafely(IndexDetailFragment(), "Index_Detail", false, true, R.id.containerLayout)
-                }
-            }
-
-        })
+//        viewModel.subscribeToSocket()
+//                .subscribe(
+//                        { item ->
+//                            clientMessageReceived(item)
+//                            Timber.d("Socket connect $item")
+//                        }
+//                        , { e -> Timber.e("Socket error $e") })
     }
 
     private fun subscribeToSocketSMIList(it: Response<List<JBSMIModel>>) {
@@ -214,7 +220,7 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
     }
 
     private fun uiUpdate(product: SocketModel?) {
-        (recyclerViewHome?.adapter as? HomeAdapter).updateItem(JBSMIModel(product!!))
+        (recyclerViewHome?.adapter as? HomeAdapter)?.updateItem(JBSMIModel(product!!))
     }
 
     private fun setIndex(name: String?, prise: String?, priceChangePct: Double?, date: Long?) {
@@ -235,7 +241,7 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
         if (spinnerIndexSMI != null) {
             spinnerIndexSMI?.visibility = View.GONE
         }
-        txtDate?.setDate(date, DATE_FORMAT)
+        txtDate?.setDate(date, "dd-MM-YYYY")
     }
 
     private fun clientMessageReceived(messageBody: String) {
@@ -261,7 +267,7 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
         when {
             array.isNotEmpty() -> {
                 Timber.d("Socket subscribe")
-                viewModel.subscribeToSocketContent(array)
+//                viewModel.subscribeToSocketContent(array)
             }
         }
 
@@ -271,7 +277,7 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
         super.onPause()
         when {
             array.isNotEmpty() -> {
-                viewModel.unsubscribeFromSocket(array)
+//                viewModel.unsubscribeFromSocket(array)
                 Timber.d("Socket unsubscribe")
             }
         }

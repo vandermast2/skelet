@@ -9,7 +9,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.samapps.skelet.R
 import com.samapps.skelet.dataFlow.models.apiModels.CandleStickModel
+import com.samapps.skelet.ui.customView.CandleStickChart
+import com.samapps.skelet.utils.extentions.format
 import com.samapps.skelet.utils.extentions.onClick
+import kotlinx.android.synthetic.main.market_card_candle.view.*
 
 
 /**
@@ -25,15 +28,15 @@ class CandleAdapter(private val max: Int, private var items: MutableList<CandleS
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        val name = itemView!!.txtTitle
-        val txtProcentCard = itemView!!.txtProcent
-        val bid: TextView = itemView!!.txtRatio
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val name = itemView.txtTitle
+        val txtProcentCard = itemView.txtProcent
+        val bid: TextView = itemView.txtRatio
 
-        var background: ConstraintLayout = itemView!!.containerCandle
+        var background: ConstraintLayout = itemView.containerCandle
 
         fun bind(item: CandleStickModel, listener: OnCandleClickListener, max: Int) {
-            val candleGraph: CandleStickChart = itemView!!.candleStickChart
+            val candleGraph: CandleStickChart = itemView.candleStickChart
             candleGraph.requestLayout()
             name.text = item.title
 

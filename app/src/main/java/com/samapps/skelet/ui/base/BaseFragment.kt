@@ -3,7 +3,6 @@ package com.samapps.skelet.ui.base
 
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -37,6 +36,8 @@ abstract class BaseFragment<T : BaseVM> : Fragment() {
     companion object {
         private const val COROUTINE_DELAY = 1L
     }
+
+    abstract fun getName(): String
 
     var popupWindow: ListPopupWindow? = null
 
