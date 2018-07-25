@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#00068b</color>
+    <color name="colorAccent">#b90d1391</color>
+
+
+    <color name="background">#f6f6f6</color>
+    <color name="blueGreen">#00a292</color>
+    <color name="grey">#efeee5</color>
+    <color name="grey_1">#8A000000</color>
+    <color name="deepBlue">#00068b</color>
+    <color name="warmGrey">#979797</color>
+    <color name="warmGrey13">#64F8F8F8</color>
+    <color name="warmGreyTwo">#999999</color>
+    <color name="warmGreyThree">#979797</color>
+    <color name="teal">#00a292</color>
+    <color name="greyishBrown">#999999</color>
+    <color name="greyishBrownText">#4C4C4C</color>
+
+    <color name="whiteTwo">#f8f8f8</color>
+    <color name="whiteThree">#f3f3f3</color>
+    <color name="whiteLine">#64e9e9e9</color>
+    <color name="rosyPink">#ec777b</color>
+    <color name="rouge">#9A1D2E</color>
+    <color name="black">#000000</color>
+    <color name="tealBlue">#0097B9</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

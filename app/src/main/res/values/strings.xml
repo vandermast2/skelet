@@ -5,4 +5,72 @@
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+
+    <string name="performance">Price</string>
+    <string name="news">News</string>
+    <string name="filter_products">Filter products</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_detail_warrant">DetailWarrantActivity</string>
+    <string name="title_activity_news_action">NewsActionActivity</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="alerts">Alerts</string>
+    <string name="title_activity_filter">FilterActivity</string>
+
+    <string name="title_activity_alert">AlertActivity</string>
+
+    <string name="title_activity_alert_del">AlertDelActivity</string>
+
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="mid_cap_market">MID CAP MARKET</string>
+    <string name="market_news">MARKET NEWS</string>
+    <string name="warrants_upercase">WARRANTS</string>
+    <string name="my_jb_pre_market">MY JB PRE-MARKET</string>
+    <string name="home">HOME</string>
+    <string name="distance_to_strike">DISTANCE TO STRIKE</string>
+    <string name="strike_price_chf">STRIKE PRICE (CHF)</string>
+    <string name="maturity">MATURITY</string>
+    <string name="call">CALL</string>
+    <string name="put">PUT</string>
+    <string name="type">TYPE</string>
+    <string name="show_12_results">SHOW RESULTS</string>
+
+    <string name="title_activity_filter_warrants">FilterWarrantsActivity</string>
+    <string name="filter">FILTER</string>
+    <string name="yes_tx">YES</string>
+    <string name="no_tx">NO</string>
+    <string name="delete_alert">DELETE ALERT?</string>
+
+    <string name="title_activity_promotion">PromotionActivity</string>
+    <string name="add">Add</string>
+    <string name="save_trader_s_number">Call your bank</string>
+
+    <string name="title_activity_alert_warrants">AlertWarrantsActivity</string>
+    <string name="open_settings">Retry</string>
+    <string name="notification_text" translatable="false">JB Premarket: You have a new publication</string>
+    <string name="notification_title">JB Premarket</string>
+    <string name="new_articles">%d new publications</string>
+
+    <string name="title_activity_disclaimer_detail">DisclaimerDetailActivity</string>
+    <string name="first">Bank Julius Baer provides daily tradeable premarket quotes on all SMI stocks as well as on a selected choice of Swiss mid-caps stocks between 08:00 - 08:45 h.  \nWe are pleased to accept your orders through your own bank or call our Julius Baer trading desk directly at +41 (0)58 888 8680.</string>
+    <string name="second">Julius Baer is a leading issuer of Structured Products and Warrants in Switzerland. A solid balance sheet with a strong equity ratio make the bank an attractive partner for private clients, family offices, banks and independent asset managers. Measured by traded volume at the stock exchange, Julius Baer is one of the top five issuers in the Swiss market. This excellent market position is due to bank\'s high-quality product range and client service.
+        \n\nYou can count on a team of experienced derivatives advisors who are happy to assist you.
+        \n\nVia telephone +41 (0)58 888 81 81
+        \nYou can reach us on Working days from 08:00 till 18:00
+        \nVia Email derivatives@juliusbaer.com
+        \nPlease contact us at any time via email 
+        \n\nor visit https://derivatives.juliusbaer.com 
+    </string>
+
+    <string name="maturity_month_format">%1$s MONTHS</string>
+
+    <string name="underlying_price">Underlying`s price: %.2f</string>
+    <string name="current_price_format">Current price: %.2f</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="disclaimer">Please note that by downloading, installing and/or using this application you allow and give your consent to Julius Baer and/or third parties (e.g. app store and network operators or the manufacturer of your device), wherever they are located, to access and process your data and/or to conclude that a current, past or potential bank client relationship with Julius Baer may exist and/or to draw conclusions as to your existing or potential investments. Bank client confidentiality and/or data protection can no longer be guaranteed in the event of such possible disclosure of data and/or the bank client relationship.</string>
+    <string name="disclaimer2">IN THIS REGARD, BY DOWNLOADING, INSTALLING AND/OR USING THIS APPLICATION, YOU ACKNOWLEDGE THAT YOU HAVE READ AND UNDERSTOOD THIS NOTICE AND RELEASE JULIUS BAER FROM ITS DUTY TO MAINTAIN BANK CLIENT CONFIDENTIALITY AND/OR DATA PROTECTION AND EXPRESSLY FULLY APPROVE THE RESPECTIVE COLLECTION, TRANSFER AND PROCESSING OF DATA IN COMPLIANCE WITH THE APPLICABLE LAWS.</string>
+    <string name="from">From 8:00-8:45 we show our own, real-time tradable premarket quotes. \nFrom 9:00-17:30 we show real-time quotes from CBOE Europe.\nAll closing market data will be visible until midnight. From midnight until 8:00 we show last paid prices only.\nThe published data is intended for information purposes only and is not binding on the Bank (see legal disclaimer).</string>
+    <string name="empty_watchlist">Your watchlist is empty.</string>
 </resources>

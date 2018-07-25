@@ -1,7 +1,8 @@
 package com.samapps.skelet.ui.base
 
-import android.app.AlertDialog
+
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,10 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.delay
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
+import retrofit2.HttpException
+import timber.log.Timber
+import java.net.HttpURLConnection
 import java.util.concurrent.TimeUnit
 
 abstract class BaseFragment<T : BaseVM> : Fragment() {
@@ -47,16 +52,29 @@ abstract class BaseFragment<T : BaseVM> : Fragment() {
 
         alertMessage.observe(this@BaseFragment, Observer {
             it?.let {
-                this@BaseFragment.showAlert(it)
+                parseError(it)
+                this@BaseFragment.showAlert(it.message)
                 alertMessage.value = null
             }
         })
-        favoritesCount.observe(this@BaseFragment, Observer {
-            it?.let {
-//                updateFavoritesCount(it)
-            }
-        })
+
         observeLiveData()
+    }
+
+    fun parseError(it: Throwable) {
+        if (it is HttpException) {
+            when ((it).code()) {
+                HttpURLConnection.HTTP_BAD_REQUEST -> context?.toast("Error: ${it.message()}")
+//                HttpURLConnection.HTTP_UNAUTHORIZED -> startActivity(Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//                HttpURLConnection.HTTP_FORBIDDEN -> startActivity(Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//                HttpURLConnection.HTTP_NOT_FOUND -> ServerErrorDialog().showDialog(this)
+//                HttpURLConnection.HTTP_INTERNAL_ERROR -> ServerErrorDialog().showDialog(this)
+//                else -> ServerErrorDialog().showDialog(this)
+            }
+        } else {
+            Timber.e("Error: ${it}")
+//            ServerErrorDialog().showDialog(this)
+        }
     }
 
     protected abstract val observeLiveData: T.() -> Unit
@@ -85,7 +103,8 @@ abstract class BaseFragment<T : BaseVM> : Fragment() {
         super.onResume()
         with(viewModel.alertMessage) {
             value?.let {
-                this@BaseFragment.showAlert(it)
+                parseError(it)
+                this@BaseFragment.showAlert(it.message)
                 value = null
             }
         }
@@ -157,13 +176,13 @@ abstract class BaseFragment<T : BaseVM> : Fragment() {
                                             negativeText: String = getString(R.string.cancel),
                                             negativeListener: (dialog: DialogInterface, which: Int) -> Unit
                                             = { dialog, _ -> dialog.cancel() }) {
-        AlertDialog.Builder(context)
-                .setView(customView)
-                .setCancelable(canelable)
-                .setPositiveButton(positiveText, positiveListener)
-                .setNegativeButton(negativeText, negativeListener)
-                .create()
-                .show()
+//        androidx.appcompat.widget.D
+//                .setView(customView)
+//                .setCancelable(canelable)
+//                .setPositiveButton(positiveText, positiveListener)
+//                .setNegativeButton(negativeText, negativeListener)
+//                .create()
+//                .show()
     }
 
     protected fun tryToOpenUri(uri: String?) {

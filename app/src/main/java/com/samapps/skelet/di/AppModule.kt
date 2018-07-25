@@ -2,9 +2,9 @@ package com.samapps.skelet.di
 
 import android.app.Application
 import android.content.Context
-import com.samapps.skelet.dataFlow.DataManger
-import com.samapps.skelet.dataFlow.IDataManager
-import com.samapps.skelet.dataFlow.IUserStorage
+import com.samapps.skelet.dataFlow.managers.DataManger
+import com.samapps.skelet.dataFlow.managers.IDataManager
+import com.samapps.skelet.dataFlow.storage.IUserStorage
 import com.samapps.skelet.dataFlow.network.Api
 import dagger.Module
 import dagger.Provides

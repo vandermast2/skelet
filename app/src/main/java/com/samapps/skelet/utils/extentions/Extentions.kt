@@ -1,4 +1,4 @@
-package com.samapps.skelet.utils
+package com.samapps.skelet.utils.extentions
 
 import android.view.View
 

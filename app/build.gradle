@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -61,7 +63,7 @@ android {
             dimension "default"
             applicationIdSuffix ".dev"
             resValue "string", "app_name", "skelet.DEV"
-            buildConfigField 'String', 'API_BASE_URL', '"http://217.71.92.66/jpa/cv.dev/"'
+            buildConfigField 'String', 'API_BASE_URL', '"http://"'
             buildConfigField 'String', 'SOCKET_BASE_URL', '"tcp://"'
             buildConfigField 'String', 'TOKEN', '""'
             buildConfigField 'String', 'TOKEN1', '""'
@@ -89,7 +91,7 @@ android {
             applicationIdSuffix ".prod"
             resValue "string", "app_name", "skelet"
             buildConfigField 'String', 'API_BASE_URL', '""'
-            buildConfigField 'String', 'SOCKET_BASE_URL', '"tcp://217.71.92.75:443"'
+            buildConfigField 'String', 'SOCKET_BASE_URL', '""'
             buildConfigField 'String', 'TOKEN', '""'
             buildConfigField 'String', 'TOKEN1', '""'
         }
@@ -119,9 +121,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha3'
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-alpha1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
 
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
@@ -142,15 +144,27 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
+
     def ok_http_version = '3.8.1'
     implementation "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
 
     def dagger_version = '2.16'
     implementation "com.google.dagger:dagger:$dagger_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+    implementation 'com.google.firebase:firebase-messaging:17.1.0'
+
+    implementation "org.jetbrains.anko:anko:$anko_version"
+
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    implementation 'com.android.support:design:28.1.1'
+}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/headerComp"
+    android:layout_width="match_parent"
+    android:layout_height="141dp"
+    android:background="@color/background">
+
+    <ImageView
+        android:id="@+id/imgBell"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="103dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/material_drawer_circle_mask"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/alarm" />
+
+    <LinearLayout
+        android:id="@+id/linearHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/verlag_book"
+            android:gravity="bottom|center_horizontal"
+            android:maxLines="1"
+            android:text=""
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/valorName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:fontFamily="@font/verlag_light"
+            android:gravity="top|center_horizontal"
+            android:text=""
+            android:textSize="13sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgStar"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/material_drawer_circle_mask"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imgPhone"
+        app:layout_constraintStart_toEndOf="@+id/imgBell"
+        app:layout_constraintTop_toTopOf="@+id/imgBell"
+        app:srcCompat="@drawable/ic_watchlist" />
+
+    <ImageView
+        android:id="@+id/imgPhone"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/material_drawer_circle_mask"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="11dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgBell"
+        app:srcCompat="@drawable/ic_phone" />
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_caret_left_pull" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

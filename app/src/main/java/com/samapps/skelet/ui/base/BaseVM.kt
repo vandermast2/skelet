@@ -1,28 +1,25 @@
 package com.samapps.skelet.ui.base
 
-import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.samapps.skelet.AppApplication
-import com.samapps.skelet.dataFlow.IDataManager
+import com.samapps.skelet.dataFlow.managers.IDataManager
+import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.Job
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 import timber.log.Timber
 import javax.inject.Inject
 
-abstract class BaseVM: ViewModel() {
+abstract class BaseVM : ViewModel() {
     @Inject
     lateinit var dataManager: IDataManager
-    val progressLiveData = MutableLiveData<Boolean>()
-    val alertMessage = MutableLiveData<String?>()
-    val favoritesCount = MutableLiveData<Int>()
-    val uriLiveData = MutableLiveData<Uri>()
 
-//    protected val registrationProvider by lazy { ProviderInjector.registrationProvider }
-//    protected val productProvider = ProviderInjector.productProvider
+    val progressLiveData = MutableLiveData<Boolean>()
+    val alertMessage = MutableLiveData<Throwable?>()
+
     protected val tag: String = javaClass.simpleName
     private val coroutines = mutableListOf<Deferred<*>>()
-    private val subscriptions = mutableListOf<Job>()
 
     init {
         AppApplication.component.inject(this)
@@ -36,15 +33,9 @@ abstract class BaseVM: ViewModel() {
     override fun onCleared() {
         coroutines.forEach { it.cancel() }
         coroutines.clear()
-        subscriptions.forEach { it.cancel() }
-        subscriptions.clear()
         super.onCleared()
     }
 
-    protected fun addSubscription(job: Job): Job {
-        subscriptions.add(job)
-        return job
-    }
 
     fun showProgress() {
         progressLiveData.postValue(true)
@@ -54,54 +45,44 @@ abstract class BaseVM: ViewModel() {
         progressLiveData.postValue(false)
     }
 
-//    protected fun <T : Any?> processAsyncProviderCall(call: () -> ProviderResult<T>,
-//                                                      onSuccess: (T) -> Unit = { /* nothing by default*/ },
-//                                                      onError: (E: Exception?) -> Unit = { /* nothing by default*/ },
-//                                                      showProgress: Boolean = false): Deferred<*>
-//            = processAsyncProviderCallWithFullResult(call, { it.result?.let { onSuccess(it) } },
-//            onError, showProgress)
+    fun <T : Any?> processAsyncProviderCall(call: () -> Deferred<T>,
+                                                    onSuccess: (T) -> Unit = { /* nothing by default*/ },
+                                                    onError: (E: Throwable?) -> Unit = { /* nothing by default*/ },
+                                                    showProgress: Boolean = false): Deferred<*> = processAsyncProviderCallWithFullResult(call, { onSuccess(it)},
+            onError, showProgress)
 
 
-//    protected fun <T : Any?>
-//            processAsyncProviderCallWithFullResult(call: () -> ProviderResult<T>,
-//                                                   onSuccess: (ProviderResult<T>) -> Unit = { /* nothing by default*/ },
-//                                                   onError: (E: Exception?) -> Unit = { /* nothing by default*/ },
-//                                                   showProgress: Boolean = false): Deferred<*> {
-//        return addCoroutine(async(UI) {
-//            if (showProgress) {
-//                showProgress()
-//            }
-//            val job = async(CommonPool) {
-//                call()
-//            }
-//            with(job.await()) {
-//                if (isActive) {
-//                    if (isSuccess()) onSuccess(this) else onError(exception)
-//                }
-//            }
-//            if (showProgress) {
-//                hideProgress()
-//            }
-//        })
-//    }
+    private fun <T : Any?>
+            processAsyncProviderCallWithFullResult(call: () -> Deferred<T>,
+                                                   onSuccess: (T) -> Unit = { /* nothing by default*/ },
+                                                   onError: (E: Throwable?) -> Unit = { /* nothing by default*/ },
+                                                   showProgress: Boolean = false): Deferred<*> {
+        return addCoroutine(async(UI) {
+            if (showProgress) {
+                showProgress()
+            }
+            val job = async(CommonPool) {
+                call()
+            }
+            with(job.await()) {
+                try {
+                    onSuccess(await())
+                }catch (t:Throwable){
+                    onError(getCompletionExceptionOrNull())
+                }
+            }
+            if (showProgress) {
+                hideProgress()
+            }
+        })
+    }
 
     protected fun onError(throwable: Throwable?) {
         Timber.e("Error $throwable")
-        showAlert()
+        showAlert(throwable)
     }
 
-
-
-
-
-    fun showAlert(text: String? = null) {
-        alertMessage.value = text ?: ""
+    fun showAlert(throwable : Throwable? = null) {
+        alertMessage.value = throwable
     }
-
-
-
-    protected open fun processUriResult(uri: Uri) {
-        uriLiveData.value = uri
-    }
-
 }

@@ -3,8 +3,9 @@ package com.samapps.skelet.di
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import com.samapps.skelet.BuildConfig
-import com.samapps.skelet.dataFlow.IUserStorage
+import com.samapps.skelet.dataFlow.storage.IUserStorage
 import com.samapps.skelet.dataFlow.network.Api
 import dagger.Module
 import dagger.Provides
@@ -14,6 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -34,7 +36,8 @@ class NetworkModule {
                 .baseUrl(httpUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
     }
 
@@ -65,7 +68,7 @@ class NetworkModule {
     @Provides
     fun provideHttpLoggerInterceptor(): HttpLoggingInterceptor {
         val logger = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
-//            Timber.tag(NETWORK_TAG).d(it)
+            Timber.tag(NETWORK_TAG).d(it)
         })
         logger.level = HttpLoggingInterceptor.Level.BODY
 
@@ -79,6 +82,6 @@ class NetworkModule {
             .create()
 
     companion object {
-        private const val NETWORK_TAG = "Network"
+        private const val NETWORK_TAG = "NetworkAPI"
     }
 }

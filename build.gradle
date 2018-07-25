@@ -2,20 +2,20 @@
 
 buildscript {
     ext.anko_version = '0.10.2'
-    ext.kotlin_version = '1.2.50'
+    ext.kotlin_version = '1.2.51'
+
     repositories {
         google()
         jcenter()
         mavenCentral()
-
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-beta01'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha03'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:3.2.1'
+        classpath 'com.google.gms:google-services:4.0.1'
         classpath "io.realm:realm-gradle-plugin:5.1.0"
     }
-
 }
 
 allprojects {

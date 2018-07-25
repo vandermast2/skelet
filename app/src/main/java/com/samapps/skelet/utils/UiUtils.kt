@@ -22,7 +22,7 @@ import android.widget.EditText
 object UiUtils {
 
     /**
-     * Check compatibility with api level = 26 (O)
+     * Check compatibility with manager level = 26 (O)
      *
      * @return true, if current version >= 26
      */
@@ -30,7 +30,7 @@ object UiUtils {
         get() = isCompatWith(Build.VERSION_CODES.O)
 
     /**
-     * Check compatibility with api level = 23 (M)
+     * Check compatibility with manager level = 23 (M)
      *
      * @return true, if current version >= 23
      */
@@ -38,7 +38,7 @@ object UiUtils {
         get() = isCompatWith(Build.VERSION_CODES.M)
 
     /**
-     * Check compatibility with api level = 24 (N)
+     * Check compatibility with manager level = 24 (N)
      *
      * @return true, if current version >= 24
      */
@@ -46,7 +46,7 @@ object UiUtils {
         get() = isCompatWith(Build.VERSION_CODES.N)
 
     /**
-     * Check compatibility with api level = 21 (Lollipop)
+     * Check compatibility with manager level = 21 (Lollipop)
      *
      * @return true, if current version >= 21
      */
@@ -54,7 +54,7 @@ object UiUtils {
         get() = isCompatWith(Build.VERSION_CODES.LOLLIPOP)
 
     /**
-     * Check compatibility with api level = 19 (KitKat)
+     * Check compatibility with manager level = 19 (KitKat)
      *
      * @return true, if current version >= 19
      */
@@ -62,7 +62,7 @@ object UiUtils {
         get() = isCompatWith(Build.VERSION_CODES.KITKAT)
 
     /**
-     * Check compatibility with api level = 17 (JELLY_BEAN_MR1)
+     * Check compatibility with manager level = 17 (JELLY_BEAN_MR1)
      *
      * @return true, if current version >= 17
      */
@@ -123,7 +123,7 @@ object UiUtils {
     }
 
     /**
-     * Check compatibility with api level = versionCode
+     * Check compatibility with manager level = versionCode
      *
      * @param versionCode Android API level
      * @return true, if current version >= versionCode

@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.samapps.skelet.utils.UiUtils.hideKeyboard
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.toast
+import retrofit2.HttpException
+import timber.log.Timber
+import java.net.HttpURLConnection
 
 abstract class BaseActivity<T : BaseVM> : AppCompatActivity() {
     abstract val viewModelClass: Class<T>
@@ -24,9 +29,25 @@ abstract class BaseActivity<T : BaseVM> : AppCompatActivity() {
         super.onResume()
         with(viewModel.alertMessage) {
             value?.let {
-                alert { "ALERT" }
+                parseError(it)
                 value = null
             }
+        }
+    }
+
+    fun parseError(it: Throwable) {
+        if (it is HttpException) {
+            when ((it).code()) {
+                HttpURLConnection.HTTP_BAD_REQUEST -> toast("Error: ${it.message()}")
+//                HttpURLConnection.HTTP_UNAUTHORIZED -> startActivity(Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//                HttpURLConnection.HTTP_FORBIDDEN -> startActivity(Intent(this, LoginActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//                HttpURLConnection.HTTP_NOT_FOUND -> ServerErrorDialog().showDialog(this)
+//                HttpURLConnection.HTTP_INTERNAL_ERROR -> ServerErrorDialog().showDialog(this)
+//                else -> ServerErrorDialog().showDialog(this)
+            }
+        } else {
+            Timber.e("Error: ${it}")
+//            ServerErrorDialog().showDialog(this)
         }
     }
 
@@ -36,7 +57,7 @@ abstract class BaseActivity<T : BaseVM> : AppCompatActivity() {
         })
         alertMessage.observe(this@BaseActivity, Observer {
             it?.let {
-                alert { "ALERT" }
+                parseError(it)
                 alertMessage.value = null
             }
         })
@@ -53,7 +74,7 @@ abstract class BaseActivity<T : BaseVM> : AppCompatActivity() {
      *                             to it's class name }
      */
     protected fun <T : Fragment> replaceFragment(fragment: T, needToAddToBackStack: Boolean = true): T {
-//        hideKeyboard()
+        hideKeyboard(currentFocus)
         val name = fragment.javaClass.name
         with(supportFragmentManager.beginTransaction()) {
             replace(containerId, fragment, name)

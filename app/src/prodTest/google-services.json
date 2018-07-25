@@ -1,0 +1,187 @@
+{
+  "project_info": {
+    "project_number": "850786669850",
+    "firebase_url": "https://skelet2-258de.firebaseio.com",
+    "project_id": "skelet2-258de",
+    "storage_bucket": "skelet2-258de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850786669850:android:ca1c5f7af9670ef4",
+        "android_client_info": {
+          "package_name": "com.samapps.skelet.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850786669850-9g1sh5s6k50o3si3jcv7d0biaed2jvro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samapps.skelet.dev",
+            "certificate_hash": "e87b217e2356ae940780fec2e067a4aa49712c4a"
+          }
+        },
+        {
+          "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTZwHa13IA5bdZTZ2b_wNe6oaUF1Yf2fA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850786669850:android:cdd0a4711aba4baa",
+        "android_client_info": {
+          "package_name": "com.samapps.skelet.devTest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850786669850-dirpt4bkqr8uakq7dvkj4da6dluk9ag4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samapps.skelet.devTest",
+            "certificate_hash": "e87b217e2356ae940780fec2e067a4aa49712c4a"
+          }
+        },
+        {
+          "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTZwHa13IA5bdZTZ2b_wNe6oaUF1Yf2fA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850786669850:android:8c480aa523e8c397",
+        "android_client_info": {
+          "package_name": "com.samapps.skelet.prod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850786669850-katb13qq2tv78elqioca77156pehhhls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samapps.skelet.prod",
+            "certificate_hash": "e87b217e2356ae940780fec2e067a4aa49712c4a"
+          }
+        },
+        {
+          "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTZwHa13IA5bdZTZ2b_wNe6oaUF1Yf2fA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850786669850:android:a3388e8e9b309b0f",
+        "android_client_info": {
+          "package_name": "com.samapps.skelet.prodTest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850786669850-oel86pnoo81g5269lpmcpsgqc19bm1cc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.samapps.skelet.prodTest",
+            "certificate_hash": "e87b217e2356ae940780fec2e067a4aa49712c4a"
+          }
+        },
+        {
+          "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTZwHa13IA5bdZTZ2b_wNe6oaUF1Yf2fA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850786669850-ug72n62516k8fe9mtu42nbdqd57p3mmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
