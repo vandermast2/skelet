@@ -8,6 +8,12 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.google.gms.google-services'
 
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -63,10 +69,10 @@ android {
             dimension "default"
             applicationIdSuffix ".dev"
             resValue "string", "app_name", "skelet.DEV"
-            buildConfigField 'String', 'API_BASE_URL', '"http://"'
-            buildConfigField 'String', 'SOCKET_BASE_URL', '"tcp://"'
-            buildConfigField 'String', 'TOKEN', '""'
-            buildConfigField 'String', 'TOKEN1', '""'
+            buildConfigField 'String', 'API_BASE_URL', '"http://217.71.92.66/jpa/cv.dev/"'
+            buildConfigField 'String', 'SOCKET_BASE_URL', '"tcp://217.71.92.68:443"'
+            buildConfigField 'String', 'TOKEN', '"in342yxro7yn3o8ycrf98pq3yxp9r8uq38u4rtpt0q38up480f3fb8347hf374hf037h40f3h4f037h4f03h84f0h83450f8j0j58fjh"'
+            buildConfigField 'String', 'TOKEN1', '"in342yxro7yn3o8y"'
         }
         devTest {
             dimension "default"
@@ -158,6 +164,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:17.1.0'
 
     implementation "org.jetbrains.anko:anko:$anko_version"
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.4@aar') {
+        transitive = true;
+    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'

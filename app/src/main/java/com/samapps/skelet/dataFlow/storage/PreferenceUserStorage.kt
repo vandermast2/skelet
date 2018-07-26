@@ -103,7 +103,7 @@ class PreferenceUserStorage @Inject constructor(var context: Context, val securi
     }
 
     companion object {
-        private const val NAME = "jpa_preference_name"
+        private const val NAME = "com.samapps.skelet"
         private const val IS_CONFIRMED = "is_confirmed"
         private const val FIRST_LOADING_KEY = "jvi_first_time_loading"
         private const val PHONE_NUMBER = "phone"

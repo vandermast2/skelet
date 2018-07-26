@@ -3,9 +3,11 @@ package com.samapps.skelet.ui.main.activities.splash
 import android.content.Intent
 import androidx.lifecycle.Observer
 import com.samapps.skelet.R
+import com.samapps.skelet.dataFlow.models.apiModels.RegistrationModel
 import com.samapps.skelet.ui.base.BaseActivity
 import com.samapps.skelet.ui.main.activities.main.MainActivity
 import com.samapps.skelet.utils.HardwareIdProvider
+import org.jetbrains.anko.doAsync
 import timber.log.Timber
 
 class SplashActivity : BaseActivity<SplashActivityVM>() {
@@ -20,18 +22,30 @@ class SplashActivity : BaseActivity<SplashActivityVM>() {
             if (it?.error != null) {
                 Timber.e(it.error.message)
             } else {
-                viewModel.saveToken(it.data?.accessToken!!)
-                viewModel.savePublicKey(it.data.publicKey!!)
-                viewModel.saveTokenRole(it.data.role!!)
-                if (it.data.role == "Subscriber") {
-                    viewModel.setIsConfirmed(true)
-                } else {
-                    viewModel.setIsConfirmed(false)
+                doAsync {
+                    val result = saveToken(it.data!!)
+                    runOnUiThread {
+                        if (result){
+                            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                            finish()
+                        }
+                    }
                 }
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                finish()
+
             }
         })
+    }
+
+    private fun saveToken(it:RegistrationModel):Boolean{
+        viewModel.saveToken(it.accessToken!!)
+        viewModel.savePublicKey(it.publicKey!!)
+        viewModel.saveTokenRole(it.role!!)
+        if (it.role == "Subscriber") {
+            viewModel.setIsConfirmed(true)
+        } else {
+            viewModel.setIsConfirmed(false)
+        }
+        return true
     }
 }
 

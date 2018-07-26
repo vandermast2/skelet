@@ -40,14 +40,6 @@ class SecurityController @Inject constructor(private val enCryptor: EnCryptor, p
                 val start = Calendar.getInstance()
                 val end = Calendar.getInstance()
                 end.add(Calendar.YEAR, 1)
-
-                val spec = KeyPairGeneratorSpec.Builder(context)
-                        .setAlias(alias)
-                        .setSubject(X500Principal("CN=Sample Name, O=Android Authority"))
-                        .setSerialNumber(BigInteger.ONE)
-                        .setStartDate(start.time)
-                        .setEndDate(end.time)
-                        .build()
                 val generator = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore")
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     generator.initialize(KeyGenParameterSpec.Builder(
@@ -56,6 +48,13 @@ class SecurityController @Inject constructor(private val enCryptor: EnCryptor, p
                             .setSignaturePaddings(KeyProperties.SIGNATURE_PADDING_RSA_PSS)
                             .build())
                 } else {
+                    val spec = KeyPairGeneratorSpec.Builder(context)
+                            .setAlias(alias)
+                            .setSubject(X500Principal("CN=Sample Name, O=Android Authority"))
+                            .setSerialNumber(BigInteger.ONE)
+                            .setStartDate(start.time)
+                            .setEndDate(end.time)
+                            .build()
                     generator.initialize(spec)
                 }
 

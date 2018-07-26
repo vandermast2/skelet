@@ -14,20 +14,20 @@ import com.samapps.skelet.ui.base.BaseVM
  * Created by sergey on 12/18/17.
  */
 class SMIViewModel: BaseVM() {
-    val answer: MutableLiveData<Response<List<JBSMIModel>>> = object : MutableLiveData<Response<List<JBSMIModel>>>() {
+    private val answer: MutableLiveData<Response<List<JBSMIModel>>> = object : MutableLiveData<Response<List<JBSMIModel>>>() {
         override fun onActive() {
             super.onActive()
             getSMIUnderluing()
         }
     }
-    val answerCandle: MutableLiveData<Response<List<CandleStickModel>>> = object : MutableLiveData<Response<List<CandleStickModel>>>() {
+    private val answerCandle: MutableLiveData<Response<List<CandleStickModel>>> = object : MutableLiveData<Response<List<CandleStickModel>>>() {
         override fun onActive() {
             super.onActive()
-            getSmiIndexRequest()
+            getSMIUnderluingCandle()
         }
     }
 
-    val index: MutableLiveData<Response<List<Index>>> = object : MutableLiveData<Response<List<Index>>>() {
+    private val index: MutableLiveData<Response<List<Index>>> = object : MutableLiveData<Response<List<Index>>>() {
         override fun onActive() {
             super.onActive()
             getSmiIndexRequest()
@@ -79,16 +79,8 @@ class SMIViewModel: BaseVM() {
     fun setBoxes(toBoolean: Boolean) {
         dataManager.setBoxes(toBoolean)
     }
-
-    fun setCandles(toBoolean: Boolean) {
-        dataManager.setCandles(toBoolean)
-    }
-
-    fun getAlphabetic(): Boolean = dataManager.getAlphabetic()
     fun getTop(): Boolean = dataManager.getTop()
     fun getBoxes(): Boolean = dataManager.getBoxes()
-    fun getCandles(): Boolean = dataManager.getCandles()
-
 
     fun getSMIUnderluingCandle(){
         processAsyncProviderCall(

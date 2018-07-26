@@ -62,9 +62,6 @@ class SMIFragment : BaseUnderlyingFragment<SMIViewModel>() {
         AppApplication.component.inject(this)
         smiLay.onClick { }
 
-        viewModel.getSmiIndexRequest()
-        viewModel.getSMIUnderluing()
-        viewModel.getSMIUnderluingCandle()
         subscribeToSocketHeaderSMI()
 
         onClickBoxes()

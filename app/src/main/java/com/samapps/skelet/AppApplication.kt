@@ -8,6 +8,10 @@ import com.samapps.skelet.di.AppComponent
 import com.samapps.skelet.di.AppModule
 import com.samapps.skelet.di.DaggerAppComponent
 import timber.log.Timber
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
+
+
 
 class AppApplication : Application() {
 
@@ -19,10 +23,10 @@ class AppApplication : Application() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate() {
+        Fabric.with(this, Crashlytics())
         super.onCreate()
         component = DaggerAppComponent.builder().appModule(AppModule(this)).build()
         component.inject(this)
-
         if (BuildConfig.DEBUG) {
             Stetho.initializeWithDefaults(this)
             Timber.plant(object : Timber.DebugTree() {
@@ -33,7 +37,6 @@ class AppApplication : Application() {
         }
 
     }
-
 
 
 }

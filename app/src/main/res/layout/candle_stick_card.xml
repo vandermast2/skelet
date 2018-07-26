@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.juliusbaer.premarket.ui.customViews.DividerView
+    <com.samapps.skelet.ui.customView.DividerView
         android:id="@+id/dividerCentre"
         android:layout_width="3dp"
         android:layout_height="0dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:orientation="vertical" />
 
-    <com.juliusbaer.premarket.ui.customViews.DividerView
+    <com.samapps.skelet.ui.customView.DividerView
         android:layout_width="3dp"
         android:layout_height="0dp"
         android:layerType="software"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:orientation="vertical" />
 
-    <com.juliusbaer.premarket.ui.customViews.DividerView
+    <com.samapps.skelet.ui.customView.DividerView
         android:layout_width="3dp"
         android:layout_height="0dp"
         android:layerType="software"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:orientation="vertical" />
 
-    <com.juliusbaer.premarket.ui.customViews.DividerView
+    <com.samapps.skelet.ui.customView.DividerView
         android:id="@+id/dividerLeft"
         android:layout_width="3dp"
         android:layout_height="0dp"
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:orientation="vertical" />
 
-    <com.juliusbaer.premarket.ui.customViews.DividerView
+    <com.samapps.skelet.ui.customView.DividerView
         android:id="@+id/dividerRight"
         android:layout_width="3dp"
         android:layout_height="0dp"
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:orientation="vertical" />
 
-    <com.juliusbaer.premarket.ui.customViews.DividerView
+    <com.samapps.skelet.ui.customView.DividerView
         android:layout_width="0dp"
         android:layout_height="3dp"
         android:layerType="software"
@@ -100,14 +100,12 @@
         android:id="@+id/imgOpen"
         android:layout_width="1dp"
         android:layout_height="5dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/blueGreen"
         app:layout_constraintBottom_toBottomOf="@+id/highLow"
         app:layout_constraintStart_toEndOf="@id/divider"
         app:layout_constraintTop_toTopOf="@+id/highLow" />
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/imgLast"
         android:layout_width="9dp"
         android:layout_height="23dp"
@@ -117,7 +115,6 @@
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="@+id/imgOpen"
-        app:layout_constraintEnd_toEndOf="@id/divider"
         app:layout_constraintStart_toStartOf="@id/divider"
-        app:layout_constraintTop_toTopOf="@+id/imgOpen"></android.support.v7.widget.CardView>
+        app:layout_constraintTop_toTopOf="@+id/imgOpen" />
 </androidx.constraintlayout.widget.ConstraintLayout>

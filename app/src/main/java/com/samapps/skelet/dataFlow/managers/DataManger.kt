@@ -73,7 +73,7 @@ class DataManger @Inject constructor(private val api: Api, private val storage: 
     }
 
     override fun setBoxes(toBoolean: Boolean) {
-        storage.setCandles(toBoolean)
+        storage.setBoxes(toBoolean)
     }
 
     override fun setCandles(toBoolean: Boolean) {
