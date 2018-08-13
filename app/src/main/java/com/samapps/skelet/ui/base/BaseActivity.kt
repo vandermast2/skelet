@@ -1,5 +1,6 @@
 package com.samapps.skelet.ui.base
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ abstract class BaseActivity<T : BaseVM> : AppCompatActivity() {
     protected abstract val observeLiveData: T.() -> Unit
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
         observeBaseLiveData()

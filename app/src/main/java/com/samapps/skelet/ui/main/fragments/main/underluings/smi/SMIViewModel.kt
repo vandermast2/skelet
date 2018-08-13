@@ -39,7 +39,7 @@ class SMIViewModel: BaseVM() {
     }
 
     fun getSmiIndex()=index
-    fun getSmiIndexRequest(){
+    private fun getSmiIndexRequest(){
         processAsyncProviderCall(
                 call = { dataManager.getSmiIndex() },
                 onSuccess = {
@@ -52,10 +52,10 @@ class SMIViewModel: BaseVM() {
         )
     }
 
-    fun getSMIResponse()=answer
-    fun getSMIResponseCandle()=answerCandle
+    fun getSMIResponse() = answer
+    fun getSMIResponseCandle() = answerCandle
 
-    fun getSMIUnderluing(){
+    private fun getSMIUnderluing(){
         processAsyncProviderCall(
                 call = { dataManager.getSMIUnderlyings() },
                 onSuccess = {
@@ -68,21 +68,13 @@ class SMIViewModel: BaseVM() {
         )
     }
 
-    fun setAlphabetic(toBoolean: Boolean) {
-        dataManager.setAlphabetic(toBoolean)
-    }
-
-    fun setTop(toBoolean: Boolean) {
-        dataManager.setTop(toBoolean)
-    }
-
     fun setBoxes(toBoolean: Boolean) {
         dataManager.setBoxes(toBoolean)
     }
     fun getTop(): Boolean = dataManager.getTop()
     fun getBoxes(): Boolean = dataManager.getBoxes()
 
-    fun getSMIUnderluingCandle(){
+    private fun getSMIUnderluingCandle(){
         processAsyncProviderCall(
                 call = { dataManager.getCandleSMI() },
                 onSuccess = {
